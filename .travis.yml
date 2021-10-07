@@ -15,5 +15,9 @@ after_success:
 
 # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
 # Push images to docker hub
- 
+  - docker push analallena/multi-client
+  - docker push analallena/multi-nginx
+  - docker push analallena/multi-server
+  - docker push analallena/multi-worker
