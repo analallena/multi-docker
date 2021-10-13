@@ -12,11 +12,17 @@ script:
 
 after_success:
   - docker build -t analallena/multi-client ./client
+  - docker build -t analallena/multi-worker ./worker
+  - docker build -t analallena/multi-nginx ./nginx
+  - docker build -t analallena/multi-server ./server
 
 # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 # Push images to docker hub
+  - docker push analallena/multi-nginx
+  - docker push analallena/multi-server
+  - docker push analallena/multi-worker
   - docker push analallena/multi-client
 
 deploy:
